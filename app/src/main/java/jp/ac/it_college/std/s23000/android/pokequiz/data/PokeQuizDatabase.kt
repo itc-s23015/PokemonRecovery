@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import jp.ac.it_college.std.s23000.android.pokequiz.data.dao.GenerationDao
 import jp.ac.it_college.std.s23000.android.pokequiz.data.dao.PokemonDao
+import jp.ac.it_college.std.s23000.android.pokequiz.data.dao.PokemonIntroducedGenerationDao
 import jp.ac.it_college.std.s23000.android.pokequiz.data.entity.GenerationEntity
 import jp.ac.it_college.std.s23000.android.pokequiz.data.entity.PokemonEntity
 import jp.ac.it_college.std.s23000.android.pokequiz.data.entity.PokemonIntroducedGenerationCrossRef
@@ -24,4 +25,5 @@ import jp.ac.it_college.std.s23000.android.pokequiz.data.entity.PokemonIntroduce
 abstract class PokeQuizDatabase : RoomDatabase() {
     abstract val generationDao: GenerationDao
     abstract val pokemonDao: PokemonDao
+    abstract val pokemonIntroducedGenerationDao: PokemonIntroducedGenerationDao
 }
