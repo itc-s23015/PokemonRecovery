@@ -9,7 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import jp.ac.it_college.std.s23000.android.pokequiz.ui.ResultScreen
+import jp.ac.it_college.std.s23000.android.pokequiz.ui.result.ResultScreen
 import jp.ac.it_college.std.s23000.android.pokequiz.ui.generation.GenerationScreen
 import jp.ac.it_college.std.s23000.android.pokequiz.ui.home.HomeScreen
 import jp.ac.it_college.std.s23000.android.pokequiz.ui.navigation.PokeQuizDestinationArgs.CORRECT_ANSWER_COUNT_ARG

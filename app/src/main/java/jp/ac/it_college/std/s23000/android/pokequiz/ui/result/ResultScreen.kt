@@ -1,4 +1,4 @@
-package jp.ac.it_college.std.s23000.android.pokequiz.ui
+package jp.ac.it_college.std.s23000.android.pokequiz.ui.result
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
