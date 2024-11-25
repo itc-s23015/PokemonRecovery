@@ -10,7 +10,9 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import jp.ac.it_college.std.s23000.android.pokequiz.data.PokeQuizDatabase
 import jp.ac.it_college.std.s23000.android.pokequiz.data.repository.GenerationsRepository
+import jp.ac.it_college.std.s23000.android.pokequiz.data.repository.PokemonRepository
 import jp.ac.it_college.std.s23000.android.pokequiz.data.repository.impl.GenerationsRepositoryImpl
+import jp.ac.it_college.std.s23000.android.pokequiz.data.repository.impl.PokemonRepositoryImpl
 import javax.inject.Singleton
 
 @Module
@@ -28,6 +30,10 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideGenerationDao(db: PokeQuizDatabase) = db.generationDao
+
+    @Singleton
+    @Provides
+    fun providePokemonDao(db: PokeQuizDatabase) = db.pokemonDao
 }
 
 @Module
@@ -35,4 +41,7 @@ object DatabaseModule {
 abstract class RepositoryModule {
     @Binds
     abstract fun bindGenerationsRepository(impl: GenerationsRepositoryImpl): GenerationsRepository
+
+    @Binds
+    abstract fun bindPokemonRepository(impl: PokemonRepositoryImpl): PokemonRepository
 }
