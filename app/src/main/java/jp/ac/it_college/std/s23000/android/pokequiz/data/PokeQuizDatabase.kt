@@ -7,15 +7,18 @@ import jp.ac.it_college.std.s23000.android.pokequiz.data.dao.GenerationDao
 import jp.ac.it_college.std.s23000.android.pokequiz.data.dao.PokemonDao
 import jp.ac.it_college.std.s23000.android.pokequiz.data.entity.GenerationEntity
 import jp.ac.it_college.std.s23000.android.pokequiz.data.entity.PokemonEntity
+import jp.ac.it_college.std.s23000.android.pokequiz.data.entity.PokemonIntroducedGenerationCrossRef
 
 @Database(
     entities = [
         GenerationEntity::class,
         PokemonEntity::class,
+        PokemonIntroducedGenerationCrossRef::class,
     ],
-    version = 2,
+    version = 3,
     autoMigrations = [
-        AutoMigration(from = 1, to = 2)
+        AutoMigration(from = 1, to = 2),
+        AutoMigration(from = 2, to = 3),
     ]
 )
 abstract class PokeQuizDatabase : RoomDatabase() {
