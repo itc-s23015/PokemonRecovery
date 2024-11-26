@@ -3,7 +3,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:name=".PokeQuizApplication"
+        android:name="jp.ac.it_college.std.nakasone.android.pokequiz.PokeQuizApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PokeQuiz">
         <activity
-            android:name=".MainActivity"
+            android:name="jp.ac.it_college.std.nakasone.android.pokequiz.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.PokeQuiz">
             <intent-filter>
