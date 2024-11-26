@@ -4,6 +4,7 @@ import jp.ac.it_college.std.nakasone.android.pokequiz.network.PokeApiService
 import jp.ac.it_college.std.nakasone.android.pokequiz.network.model.Generation
 import jp.ac.it_college.std.nakasone.android.pokequiz.network.model.Named
 import jp.ac.it_college.std.nakasone.android.pokequiz.network.model.NamedApiResource
+import jp.ac.it_college.std.nakasone.android.pokequiz.network.model.PokemonSpecies
 import jp.ac.it_college.std.nakasone.android.pokequiz.network.model.Region
 
 object PokeApiServiceMock : PokeApiService {
@@ -20,4 +21,5 @@ object PokeApiServiceMock : PokeApiService {
     override suspend fun getGenerationByName(name: String): Generation = getGenerationById(1)
 
     override suspend fun getRegionByName(name: String): Region = Region(id = 1, names = emptyList())
+    override suspend fun getPokemonSpeciesByName(name: String): PokemonSpecies = PokemonSpecies(2)
 }
