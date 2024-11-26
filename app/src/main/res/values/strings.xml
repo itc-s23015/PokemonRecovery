@@ -2,4 +2,7 @@
     <string name="app_name">PokeQuiz</string>
     <string name="home_title">Pokémon\nクイズ</string>
     <string name="start">スタート</string>
+    <string name="select_generation">世代を選んでください</string>
+    <string name="generation_choice">%1$s : %2$s地方</string>
+    <string name="all_generation">全世代から出題</string>
 </resources>
