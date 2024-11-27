@@ -39,7 +39,7 @@ fun QuizScreen(
             modifier = modifier,
             uiState = uiState,
             onSelected = {
-                viewModel.checkAnswer(it)
+                viewModel.checkAnswer(it, toResult)
             }
         )
     }

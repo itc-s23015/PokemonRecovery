@@ -71,7 +71,10 @@ class QuizViewModel @Inject constructor(
         quizList = pokeList.shuffled().subList(0, 10)
     }
 
-    private fun nextQuiz() {
+    private fun nextQuiz(): Boolean {
+        // カウントが10以上になったら処理しない
+        if (uiState.value.number >= 10) return false
+
         val target = quizList[uiState.value.number]
         val url = target.officialArtwork
         val choices = (pokeList.filter { it.id != target.id }.shuffled().subList(0, 3)
@@ -85,9 +88,10 @@ class QuizViewModel @Inject constructor(
                 number = uiState.value.number + 1
             )
         }
+        return true
     }
 
-    fun checkAnswer(selectName: String) {
+    fun checkAnswer(selectName: String, end: (Int, Int) -> Unit) {
         val isCollect = selectName == uiState.value.targetName
         correctCount += if (isCollect) 1 else 0
         _uiState.update {
@@ -97,7 +101,7 @@ class QuizViewModel @Inject constructor(
         }
         viewModelScope.launch {
             delay(2000)
-            nextQuiz()
+            if (!nextQuiz()) end(generationId, correctCount)
         }
     }
 
