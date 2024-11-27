@@ -68,6 +68,7 @@ dependencies {
     implementation(libs.androidx.hilt.navigation)
     implementation(libs.retrofit2)
     implementation(libs.retrofit2.converter.kotlinx.serialization)
+    implementation(libs.androidx.material.icons.extended)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

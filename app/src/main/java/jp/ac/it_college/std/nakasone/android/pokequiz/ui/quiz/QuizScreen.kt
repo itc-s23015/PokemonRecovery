@@ -4,12 +4,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -23,8 +23,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import jp.ac.it_college.std.nakasone.android.pokequiz.R
-import jp.ac.it_college.std.nakasone.android.pokequiz.data.entity.GenerationEntity
-import jp.ac.it_college.std.nakasone.android.pokequiz.data.entity.GenerationWithPokemon
 
 @Composable
 fun QuizScreen(
@@ -62,26 +60,22 @@ fun QuizScreen(
                     text = uiState.generationLabel,
                     style = MaterialTheme.typography.titleLarge
                 )
+                Spacer(modifier = Modifier.size(8.dp))
                 Text(
                     text = stringResource(R.string.quiz_count, uiState.number),
                     style = MaterialTheme.typography.titleLarge
                 )
             }
 
-            val test by viewModel.test.collectAsState(
-                GenerationWithPokemon(
-                    GenerationEntity(
-                        0,
-                        "",
-                        ""
-                    ), emptyList()
-                )
+            PokemonArtwork(
+                url = uiState.imageUrl,
+                name = uiState.targetName,
+                quizStatus = uiState.status,
             )
-            LazyColumn {
-                items(test.pokemon) {
-                    Text(text = "${it.name}")
-                }
-            }
+
+            ChoiceSection(
+                choices = uiState.choices
+            )
         }
     }
 }

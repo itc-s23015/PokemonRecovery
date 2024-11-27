@@ -6,6 +6,6 @@
     <string name="generation_choice">%1$s : %2$s地方</string>
     <string name="all_generation">全世代から出題</string>
     <string name="loading_quiz_data">ポケモンデータのロード中</string>
-    <string name="quiz_count">第 %1$s 問</string>
+    <string name="quiz_count">第%1$s問</string>
     <string name="result_label">10問中 %1$s問 正解</string>
 </resources>

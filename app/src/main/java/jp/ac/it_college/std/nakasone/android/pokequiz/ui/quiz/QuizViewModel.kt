@@ -4,10 +4,12 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import jp.ac.it_college.std.nakasone.android.pokequiz.data.entity.PokemonEntity
 import jp.ac.it_college.std.nakasone.android.pokequiz.data.repository.GenerationsRepository
 import jp.ac.it_college.std.nakasone.android.pokequiz.data.repository.PokemonIntroducedGenerationRepository
 import jp.ac.it_college.std.nakasone.android.pokequiz.network.PokeApiService
 import jp.ac.it_college.std.nakasone.android.pokequiz.ui.navigation.PokeQuizDestinationArgs.GENERATION_ID_ARG
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,8 +26,9 @@ data class QuizUiState(
     val isLoading: Boolean = true,
     val generationLabel: String = "",
     val status: QuizStatus = QuizStatus.PROGRESS,
-    val number: Int = 1,
+    val number: Int = 0,
     val imageUrl: String = "",
+    val targetName: String = "",
     val choices: List<String> = emptyList(),
 )
 
@@ -38,14 +41,12 @@ class QuizViewModel @Inject constructor(
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(QuizUiState())
     val uiState: StateFlow<QuizUiState> = _uiState.asStateFlow()
-
     private val generationId: Int = checkNotNull(
         savedStateHandle[GENERATION_ID_ARG]
     )
-//    private val generationWithPokemon: Flow<GenerationWithPokemon> =
-//        pokeIntroRepo.getGenerationWithPokemon(generationId)
-
-    val test = pokeIntroRepo.getGenerationWithPokemon(generationId)
+    private lateinit var pokeList: List<PokemonEntity>
+    private lateinit var quizList: List<PokemonEntity>
+    private var correctCount = 0
 
     init {
         viewModelScope.launch {
@@ -53,9 +54,50 @@ class QuizViewModel @Inject constructor(
             if (!isCached) {
                 retrieveAndCacheGenerationWithPokemon(generationId)
             }
+            generateQuizData()
+            nextQuiz()
             _uiState.update {
-                it.copy(isLoading = false)
+                it.copy(
+                    isLoading = false,
+                    generationLabel = generationsRepo.getGenerationStream(generationId)
+                        .first()?.name ?: throw IllegalStateException("なにかおかしくなった")
+                )
             }
+        }
+    }
+
+    private suspend fun generateQuizData() {
+        pokeList = pokeIntroRepo.getGenerationWithPokemon(generationId).first().pokemon
+        quizList = pokeList.shuffled().subList(0, 10)
+    }
+
+    private fun nextQuiz() {
+        val target = quizList[uiState.value.number]
+        val url = target.officialArtwork
+        val choices = (pokeList.filter { it.id != target.id }.shuffled().subList(0, 3)
+            .map { it.name } + target.name).shuffled()
+        _uiState.update {
+            it.copy(
+                status = QuizStatus.PROGRESS,
+                targetName = target.name,
+                imageUrl = url,
+                choices = choices,
+                number = uiState.value.number + 1
+            )
+        }
+    }
+
+    fun checkAnswer(selectName: String) {
+        val isCollect = selectName == uiState.value.targetName
+        correctCount += if (isCollect) 1 else 0
+        _uiState.update {
+            it.copy(
+                status = if (isCollect) QuizStatus.CORRECT else QuizStatus.WRONG,
+            )
+        }
+        viewModelScope.launch {
+            delay(2000)
+            nextQuiz()
         }
     }
 
