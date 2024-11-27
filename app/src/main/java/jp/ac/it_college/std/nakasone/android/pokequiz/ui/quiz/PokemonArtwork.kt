@@ -6,10 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.outlined.Circle
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,7 +35,7 @@ fun PokemonArtwork(
             .aspectRatio(1f)
             .fillMaxWidth()
             .background(color = MaterialTheme.colorScheme.secondaryContainer),
-        contentAlignment = Alignment.TopCenter
+        contentAlignment = Alignment.BottomCenter
     ) {
         AsyncImage(
             modifier = Modifier
@@ -56,31 +52,17 @@ fun PokemonArtwork(
         )
 
         if (quizStatus != QuizStatus.PROGRESS) {
-            val isCollect = quizStatus == QuizStatus.CORRECT
-            Column {
-                Icon(
-                    modifier = Modifier
-                        .aspectRatio(1f)
-                        .weight(1f),
-                    imageVector = if (isCollect) Icons.Outlined.Circle else Icons.Default.Close,
-                    contentDescription = null,
-                    tint = if (isCollect) Color.Cyan else Color.Red
-                )
-                Text(
-                    text = name,
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.displayLarge
-                )
-            }
-        }
-
-        if (quizStatus == QuizStatus.CORRECT) {
-
+            Text(
+                text = name,
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.displayLarge
+            )
         }
     }
 }
 
-@Preview(widthDp = 400, heightDp = 1200, showBackground = true)
+
+@Preview(widthDp = 400, heightDp = 900, showBackground = true)
 @Composable
 private fun PokemonArtworkPreview() {
     Column {
@@ -93,11 +75,6 @@ private fun PokemonArtworkPreview() {
             url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/217.png",
             name = "ピカチュウ",
             quizStatus = QuizStatus.WRONG
-        )
-        PokemonArtwork(
-            url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/217.png",
-            name = "ピカチュウ",
-            quizStatus = QuizStatus.CORRECT
         )
     }
 

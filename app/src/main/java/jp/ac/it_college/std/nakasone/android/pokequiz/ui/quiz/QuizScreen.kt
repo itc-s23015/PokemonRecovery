@@ -31,52 +31,17 @@ fun QuizScreen(
     viewModel: QuizViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+
     if (uiState.isLoading) {
-        Column(
-            modifier = modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center
-        ) {
-            Box(
-                modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.Center
-            ) {
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .aspectRatio(1f)
-                        .padding(64.dp)
-                        .fillMaxWidth(),
-                )
-                Text(text = stringResource(id = R.string.loading_quiz_data))
-            }
-        }
+        DataLoading(modifier = modifier)
     } else {
-        Column(
-            modifier = modifier
-                .fillMaxSize()
-                .padding(8.dp)
-        ) {
-            Row {
-                Text(
-                    text = uiState.generationLabel,
-                    style = MaterialTheme.typography.titleLarge
-                )
-                Spacer(modifier = Modifier.size(8.dp))
-                Text(
-                    text = stringResource(R.string.quiz_count, uiState.number),
-                    style = MaterialTheme.typography.titleLarge
-                )
+        QuizView(
+            modifier = modifier,
+            uiState = uiState,
+            onSelected = {
+                viewModel.checkAnswer(it)
             }
-
-            PokemonArtwork(
-                url = uiState.imageUrl,
-                name = uiState.targetName,
-                quizStatus = uiState.status,
-            )
-
-            ChoiceSection(
-                choices = uiState.choices
-            )
-        }
+        )
     }
 }
 
@@ -84,4 +49,63 @@ fun QuizScreen(
 @Composable
 private fun QuizScreenPreview() {
     QuizScreen()
+}
+
+@Composable
+fun DataLoading(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center
+    ) {
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .aspectRatio(1f)
+                    .padding(64.dp)
+                    .fillMaxWidth(),
+            )
+            Text(text = stringResource(id = R.string.loading_quiz_data))
+        }
+    }
+}
+
+@Composable
+fun QuizView(
+    modifier: Modifier = Modifier,
+    uiState: QuizUiState,
+    onSelected: (String) -> Unit = {}
+) {
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(8.dp)
+    ) {
+        Row {
+            Text(
+                text = uiState.generationLabel,
+                style = MaterialTheme.typography.titleLarge
+            )
+            Spacer(modifier = Modifier.size(8.dp))
+            Text(
+                text = stringResource(R.string.quiz_count, uiState.number),
+                style = MaterialTheme.typography.titleLarge
+            )
+        }
+
+        PokemonArtwork(
+            url = uiState.imageUrl,
+            name = uiState.targetName,
+            quizStatus = uiState.status,
+        )
+
+        ChoiceSection(
+            modifier = Modifier.fillMaxSize(),
+            choices = uiState.choices,
+            quizStatus = uiState.status,
+            onSelected = onSelected
+        )
+    }
 }
