@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -107,23 +108,23 @@ class QuizViewModel @Inject constructor(
 
     private suspend fun retrieveAndCacheGenerationWithPokemon(generationId: Int) {
         if (generationId != 0) {
-            retrieveGenerationPokemonSpeciesIds(generationId).forEach {
+            retrieveGenerationPokemonSpeciesIds(generationId).collect {
                 pokeIntroRepo.upsertEntry(generationId, it)
             }
         } else {
             val gens = generationsRepo.getAllGenerationsStream().first()
             gens.forEach { gen ->
-                retrieveGenerationPokemonSpeciesIds(gen.id).forEach {
+                retrieveGenerationPokemonSpeciesIds(gen.id).collect {
                     pokeIntroRepo.upsertEntry(generationId, it)
                 }
             }
         }
     }
 
-    private suspend fun retrieveGenerationPokemonSpeciesIds(generationId: Int): List<Int> {
+    private fun retrieveGenerationPokemonSpeciesIds(generationId: Int) = flow {
         val gen = service.getGenerationById(generationId)
-        return gen.pokemonSpecies.map {
-            service.getPokemonSpeciesByName(it.name).id
+        gen.pokemonSpecies.forEach {
+            emit(service.getPokemonSpeciesByName(it.name).id)
         }
     }
 
