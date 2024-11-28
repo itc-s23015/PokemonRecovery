@@ -8,4 +8,6 @@
     <string name="loading_quiz_data">ポケモンデータのロード中</string>
     <string name="quiz_count">第%1$s問</string>
     <string name="result_label">10問中 %1$s問 正解</string>
+    <string name="retry">もういちど</string>
+    <string name="to_generation_select">世代選択へ</string>
 </resources>
