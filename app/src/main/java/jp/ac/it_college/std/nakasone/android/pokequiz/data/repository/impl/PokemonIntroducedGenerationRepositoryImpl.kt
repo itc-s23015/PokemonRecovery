@@ -10,6 +10,8 @@ import javax.inject.Inject
 class PokemonIntroducedGenerationRepositoryImpl @Inject constructor(
     private val dao: PokemonIntroducedGenerationDao
 ) : PokemonIntroducedGenerationRepository {
+    override fun getAllGenerationWithPokemon(): Flow<List<GenerationWithPokemon>> = dao.getAllGenerationWithPokemon()
+
     override fun getGenerationWithPokemon(id: Int): Flow<GenerationWithPokemon> =
         dao.getGenerationWithPokemon(id)
 

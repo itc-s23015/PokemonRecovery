@@ -23,6 +23,13 @@ import jp.ac.it_college.std.nakasone.android.pokequiz.data.entity.GenerationEnti
 import jp.ac.it_college.std.nakasone.android.pokequiz.mock.GenerationsRepositoryMock
 import jp.ac.it_college.std.nakasone.android.pokequiz.mock.PokeApiServiceMock
 
+/**
+ * 世代を選択する画面を表示するコンポーザブル関数
+ *
+ * @param[onGenerationSelected] 世代が選択されたときのコールバック関数
+ * @see GenerationButton
+ * @see GenerationViewModel
+ */
 @Composable
 fun GenerationScreen(
     modifier: Modifier = Modifier,
@@ -37,15 +44,18 @@ fun GenerationScreen(
             .padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        // ヘッダータイトル
         Text(text = stringResource(R.string.select_generation))
 
         if (uiState.isLoading) {
+            // データ読み込み中なら円形のインジケーターを表示する
             CircularProgressIndicator(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
             )
         } else {
+            // データ読み込みが完了したら、世代を選択するためのボタンを表示する
             LazyColumn(
                 modifier = Modifier.padding(top = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
@@ -57,6 +67,7 @@ fun GenerationScreen(
 
                     )
                 }
+                // 全世代を選択するボタンを固定で末尾に表示
                 item {
                     GenerationButton(
                         label = stringResource(R.string.all_generation),

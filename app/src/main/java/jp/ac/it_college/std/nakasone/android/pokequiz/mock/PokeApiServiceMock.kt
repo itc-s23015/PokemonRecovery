@@ -7,6 +7,9 @@ import jp.ac.it_college.std.nakasone.android.pokequiz.network.model.NamedApiReso
 import jp.ac.it_college.std.nakasone.android.pokequiz.network.model.PokemonSpecies
 import jp.ac.it_college.std.nakasone.android.pokequiz.network.model.Region
 
+/**
+ * [PokeApiService] のモックオブジェクト
+ */
 object PokeApiServiceMock : PokeApiService {
     override suspend fun getGenerations(): Named = Named()
 

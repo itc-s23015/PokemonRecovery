@@ -10,6 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+/**
+ * 世代選択ボタンを表示するコンポーザブル関数
+ *
+ * @param[label] ボタンに表示するテキスト
+ * @param[onClick] ボタンをクリック(タップ)されたときのコールバック関数
+ */
 @Composable
 fun GenerationButton(
     modifier: Modifier = Modifier,

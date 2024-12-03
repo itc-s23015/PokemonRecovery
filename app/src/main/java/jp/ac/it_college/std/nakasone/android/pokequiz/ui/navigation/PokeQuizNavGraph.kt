@@ -9,15 +9,19 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import jp.ac.it_college.std.nakasone.android.pokequiz.ui.result.ResultScreen
 import jp.ac.it_college.std.nakasone.android.pokequiz.ui.generation.GenerationScreen
 import jp.ac.it_college.std.nakasone.android.pokequiz.ui.home.HomeScreen
 import jp.ac.it_college.std.nakasone.android.pokequiz.ui.navigation.PokeQuizDestinationArgs.CORRECT_ANSWER_COUNT_ARG
 import jp.ac.it_college.std.nakasone.android.pokequiz.ui.navigation.PokeQuizDestinationArgs.GENERATION_ID_ARG
 import jp.ac.it_college.std.nakasone.android.pokequiz.ui.quiz.QuizScreen
+import jp.ac.it_college.std.nakasone.android.pokequiz.ui.result.ResultScreen
 
 /**
- * NavHost を使用したナビゲーション
+ * NavHost を使用したこのアプリ用のナビゲーションを定義するコンポーザブル関数
+ *
+ * @see PokeQuizDestinations
+ * @see PokeQuizDestinationArgs
+ * @see PokeQuizNavigationActions
  */
 @Composable
 fun PokeQuizNavGraph(
@@ -38,6 +42,7 @@ fun PokeQuizNavGraph(
         ) {
             HomeScreen(
                 onStartClick = {
+                    // スタートボタンがクリックされたら世代選択画面へ移動
                     navActions.navigateToGenerationSelect()
                 }
             )
@@ -49,6 +54,7 @@ fun PokeQuizNavGraph(
         ) {
             GenerationScreen(
                 onGenerationSelected = {
+                    // 世代選択ボタンがクリックされたらクイズ画面へ移動
                     navActions.navigateToQuiz(it)
                 }
             )
@@ -64,7 +70,8 @@ fun PokeQuizNavGraph(
             )
         ) {
             QuizScreen(
-                toResult = { gen, count ->
+                onQuizEnded = { gen, count ->
+                    // クイズが終了したらリザルト画面へ移動
                     navActions.navigateToResult(
                         generationId = gen,
                         count = count
@@ -87,9 +94,11 @@ fun PokeQuizNavGraph(
         ) {
             ResultScreen(
                 onRetryClick = {
-                    navActions.navigateToQuiz(1)
+                    // リトライボタンがクリックされたら同じ世代でクイズ画面へ移動
+                    navActions.navigateToQuiz(it)
                 },
                 onGenerationClick = {
+                    // 世代選択ボタンがクリックされたら世代選択画面へ移動
                     navActions.navigateToGenerationSelect()
                 }
             )

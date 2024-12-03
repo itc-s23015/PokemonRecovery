@@ -5,6 +5,9 @@ import jp.ac.it_college.std.nakasone.android.pokequiz.data.repository.Generation
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
+/**
+ * [GenerationsRepository] のモックオブジェクト
+ */
 object GenerationsRepositoryMock : GenerationsRepository {
     override fun getAllGenerationsStream(): Flow<List<GenerationEntity>> = flowOf(
         listOf(

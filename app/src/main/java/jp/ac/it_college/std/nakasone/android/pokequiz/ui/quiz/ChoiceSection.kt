@@ -20,6 +20,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+/**
+ * クイズの選択肢を表示するセクションのコンポーザブル関数
+ *
+ * @param[choices] 選択肢となる文字列のリスト
+ * @param[quizStatus] クイズの進捗状況を表すデータ
+ * @param[onSelected] 選択肢ボタンをクリックされたときのコールバック関数
+ * @see QuizStatus
+ */
 @Composable
 fun ChoiceSection(
     modifier: Modifier = Modifier,
@@ -27,11 +35,12 @@ fun ChoiceSection(
     quizStatus: QuizStatus,
     onSelected: (String) -> Unit = {}
 ) {
-
+    // 表示範囲内で中央揃えするために使用
     Box(
         modifier = modifier.fillMaxWidth(),
         contentAlignment = Alignment.Center
     ) {
+        // 選択肢ボタンを縦に並べるために使用
         Column(
             modifier = Modifier
                 .fillMaxWidth(),
@@ -50,7 +59,9 @@ fun ChoiceSection(
             }
         }
 
+        // クイズが進行中ではないときの処理
         if (quizStatus != QuizStatus.PROGRESS) {
+            // 正解したフラグ。フラグにあわせてアイコンと表示色を切り替えるのに使用する。
             val isCollect = quizStatus == QuizStatus.CORRECT
 
             Icon(

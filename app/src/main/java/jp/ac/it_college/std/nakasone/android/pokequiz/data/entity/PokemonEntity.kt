@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * pokemon テーブルに対応するエンティティクラス
+ */
 @Entity("pokemon")
 data class PokemonEntity(
     @PrimaryKey() val id: Int,

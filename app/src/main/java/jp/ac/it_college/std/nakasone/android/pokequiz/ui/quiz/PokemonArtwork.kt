@@ -22,6 +22,15 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.request.ImageRequest
 
+/**
+ * お題となるPokémonの画像を表示するコンポーザブル関数
+ *
+ * @param[url] ポケモン画像の URL
+ * @param[name] ポケモンの名前
+ * @param[quizStatus] クイズの進捗状況を表すデータ
+ * @see QuizStatus
+ * @see AsyncImage
+ */
 @Composable
 fun PokemonArtwork(
     modifier: Modifier = Modifier,
@@ -29,6 +38,7 @@ fun PokemonArtwork(
     name: String,
     quizStatus: QuizStatus
 ) {
+    // 背景色と画像と名前を重ねて表示するために使用
     Box(
         modifier = modifier
             .padding(16.dp)
@@ -37,6 +47,7 @@ fun PokemonArtwork(
             .background(color = MaterialTheme.colorScheme.secondaryContainer),
         contentAlignment = Alignment.BottomCenter
     ) {
+        // Coil の AsyncImage を使用してインターネット上の画像を表示
         AsyncImage(
             modifier = Modifier
                 .aspectRatio(1f)
@@ -46,12 +57,15 @@ fun PokemonArtwork(
                 .build(),
             contentDescription = null,
             contentScale = ContentScale.FillWidth,
+            // クイズが進行中なら画像を黒塗り。回答後なら黒塗りを解除
             colorFilter = if (quizStatus == QuizStatus.PROGRESS) ColorFilter.tint(
                 Color.Black, BlendMode.SrcIn
             ) else null,
         )
 
         if (quizStatus != QuizStatus.PROGRESS) {
+            // クイズが回答後なら、正解不正解に限らずポケモンの名前を表示
+            // TODO: テキストが見づらいので表現方法を要検討
             Text(
                 text = name,
                 textAlign = TextAlign.Center,
@@ -60,7 +74,6 @@ fun PokemonArtwork(
         }
     }
 }
-
 
 @Preview(widthDp = 400, heightDp = 900, showBackground = true)
 @Composable

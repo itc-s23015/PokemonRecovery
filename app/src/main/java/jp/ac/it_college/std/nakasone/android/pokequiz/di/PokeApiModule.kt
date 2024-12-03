@@ -8,6 +8,9 @@ import jp.ac.it_college.std.nakasone.android.pokequiz.network.PokeApi
 import jp.ac.it_college.std.nakasone.android.pokequiz.network.PokeApiService
 import javax.inject.Singleton
 
+/**
+ * Hilt 用 PokeAPI へアクセスするサービスモジュール
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object PokeApiModule {

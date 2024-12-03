@@ -10,6 +10,9 @@ import jp.ac.it_college.std.nakasone.android.pokequiz.data.entity.GenerationEnti
 import jp.ac.it_college.std.nakasone.android.pokequiz.data.entity.PokemonEntity
 import jp.ac.it_college.std.nakasone.android.pokequiz.data.entity.PokemonIntroducedGenerationCrossRef
 
+/**
+ * [RoomDatabase] クラスを継承したアプリケーションで使用するデータベースクラス
+ */
 @Database(
     entities = [
         GenerationEntity::class,

@@ -17,6 +17,9 @@ import jp.ac.it_college.std.nakasone.android.pokequiz.data.repository.impl.Pokem
 import jp.ac.it_college.std.nakasone.android.pokequiz.data.repository.impl.PokemonRepositoryImpl
 import javax.inject.Singleton
 
+/**
+ * Hilt 用データベースモジュール定義
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
@@ -43,6 +46,9 @@ object DatabaseModule {
         db.pokemonIntroducedGenerationDao
 }
 
+/**
+ * Hilt 用データリポジトリモジュール
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {

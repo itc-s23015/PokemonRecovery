@@ -6,6 +6,9 @@ import androidx.room.Upsert
 import jp.ac.it_college.std.nakasone.android.pokequiz.data.entity.PokemonEntity
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * [PokemonEntity] に対応する DAO インタフェース
+ */
 @Dao
 interface PokemonDao {
     @Upsert

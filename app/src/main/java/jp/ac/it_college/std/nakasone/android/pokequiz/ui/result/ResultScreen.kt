@@ -23,10 +23,13 @@ import jp.ac.it_college.std.nakasone.android.pokequiz.mock.GenerationsRepository
 import jp.ac.it_college.std.nakasone.android.pokequiz.ui.navigation.PokeQuizDestinationArgs.CORRECT_ANSWER_COUNT_ARG
 import jp.ac.it_college.std.nakasone.android.pokequiz.ui.navigation.PokeQuizDestinationArgs.GENERATION_ID_ARG
 
+/**
+ * クイズの結果を表示するコンポーザブル関数
+ */
 @Composable
 fun ResultScreen(
     modifier: Modifier = Modifier,
-    onRetryClick: () -> Unit = {},
+    onRetryClick: (generationId: Int) -> Unit = {},
     onGenerationClick: () -> Unit = {},
     viewModel: ResultViewModel = hiltViewModel()
 ) {
@@ -37,10 +40,12 @@ fun ResultScreen(
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        // 選択した世代名を表示
         Text(
-            text = uiState.generation,
+            text = uiState.generationName,
             style = MaterialTheme.typography.headlineLarge
         )
+        // 正解数を表示
         Text(
             modifier = Modifier.padding(vertical = 96.dp),
             text = stringResource(
@@ -50,6 +55,7 @@ fun ResultScreen(
             style = MaterialTheme.typography.displayMedium
         )
 
+        // 2つのボタンを縦に並べて表示しつつ、画面下部へ揃えるために使う
         Column(
             modifier = Modifier
                 .padding(vertical = 32.dp)
@@ -58,18 +64,18 @@ fun ResultScreen(
                 space = 16.dp,
                 alignment = Alignment.Bottom
             ),
-
-            ) {
+        ) {
+            // 同じ世代でリトライのボタンを表示
             ResultNavigateButton(
-                onClick = onRetryClick,
+                onClick = { onRetryClick(uiState.generationId) },
                 label = stringResource(id = R.string.retry)
             )
+            // 世代を選択する画面へのボタンを表示
             ResultNavigateButton(
                 onClick = onGenerationClick,
                 label = stringResource(id = R.string.to_generation_select)
             )
         }
-
     }
 }
 
@@ -89,6 +95,12 @@ private fun ResultScreenPreview() {
     )
 }
 
+/**
+ * 結果を表示したあとのアクションを選んでもらうためのボタンを表示するコンポーザブル関数
+ *
+ * @param[label] ボタンに表示するテキスト
+ * @param[onClick] ボタンをクリックされたときのコールバック関数
+ */
 @Composable
 fun ResultNavigateButton(
     modifier: Modifier = Modifier,
