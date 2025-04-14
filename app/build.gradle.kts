@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "jp.ac.it_college.std.nakasone.android.pokequiz"
+    namespace = "jp.ac.it_college.std.s23015.android.pokequiz"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "jp.ac.it_college.std.nakasone.android.pokequiz"
+        applicationId = "jp.ac.it_college.std.s23015.android.pokequiz"
         minSdk = 31
         targetSdk = 35
         versionCode = 1
