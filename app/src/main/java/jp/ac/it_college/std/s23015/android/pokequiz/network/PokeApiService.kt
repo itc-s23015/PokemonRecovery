@@ -4,6 +4,7 @@ import jp.ac.it_college.std.s23015.android.pokequiz.network.model.Generation
 import jp.ac.it_college.std.s23015.android.pokequiz.network.model.Named
 import jp.ac.it_college.std.s23015.android.pokequiz.network.model.PokemonSpecies
 import jp.ac.it_college.std.s23015.android.pokequiz.network.model.Region
+import jp.ac.it_college.std.s23015.android.pokequiz.network.model.Type
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNamingStrategy

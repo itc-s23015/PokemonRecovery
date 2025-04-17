@@ -75,6 +75,9 @@ data class QuizUiState(
      * 選択肢のリスト
      */
     val choices: List<String> = emptyList(),
+
+    //ポケモンのタイプ
+    val quizType: String = "",
 )
 
 /**

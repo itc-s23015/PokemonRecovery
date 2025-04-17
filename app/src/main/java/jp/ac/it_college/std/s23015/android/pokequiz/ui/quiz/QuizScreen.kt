@@ -124,12 +124,23 @@ fun QuizView(
                 style = MaterialTheme.typography.titleLarge
             )
         }
+
         // ポケモンの画像を表示
-        PokemonArtwork(
-            url = uiState.imageUrl,
-            name = uiState.targetName,
-            quizStatus = uiState.status,
-        )
+        Row {
+            PokemonArtwork(
+                url = uiState.imageUrl,
+                name = uiState.targetName,
+                quizStatus = uiState.status,
+            )
+
+            Spacer(modifier = Modifier.size(8.dp))
+
+            Text(
+                text = stringResource(R.string.quiz_hint, uiState.quizType)
+            )
+        }
+
+
         // 選択肢を表示
         ChoiceSection(
             modifier = Modifier.fillMaxSize(),
