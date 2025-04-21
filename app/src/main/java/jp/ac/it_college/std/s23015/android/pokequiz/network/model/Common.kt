@@ -35,6 +35,13 @@ data class Named(
     val results: List<NamedApiResource> = emptyList()
 )
 
+@Serializable
+data class TypePokemon(
+    val slot: Int,
+    val pokemon: NamedApiResource
+)
+
+
 /**
  * [Name] のプロパティ [Name.language] が日本語(ja)かをチェックするための拡張プロパティ
  */

@@ -25,10 +25,11 @@ import jp.ac.it_college.std.s23015.android.pokequiz.data.entity.TypeEntity
         PokemonIntroducedGenerationCrossRef::class,
         PokemonIntroducedTypeCrossRef::class,
     ],
-    version = 3,
+    version = 4,
     autoMigrations = [
         AutoMigration(from = 1, to = 2),
         AutoMigration(from = 2, to = 3),
+        AutoMigration(from = 3, to = 4),
     ]
 )
 abstract class PokeQuizDatabase : RoomDatabase() {

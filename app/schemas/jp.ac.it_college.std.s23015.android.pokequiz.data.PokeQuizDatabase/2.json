@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "77b4e10c7c7df00986b2ac04d6978ec2",
+    "identityHash": "18a48c66213d7e83cc27add1a18e3594",
     "entities": [
       {
         "tableName": "generations",
@@ -67,12 +67,118 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "type",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `region` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "region",
+            "columnName": "region",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pokemon_introduced_generation_cross_ref",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`generation_id` INTEGER NOT NULL, `pokemon_id` INTEGER NOT NULL, PRIMARY KEY(`generation_id`, `pokemon_id`))",
+        "fields": [
+          {
+            "fieldPath": "generationId",
+            "columnName": "generation_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pokemonId",
+            "columnName": "pokemon_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "generation_id",
+            "pokemon_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_pokemon_introduced_generation_cross_ref_pokemon_id",
+            "unique": false,
+            "columnNames": [
+              "pokemon_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_pokemon_introduced_generation_cross_ref_pokemon_id` ON `${TABLE_NAME}` (`pokemon_id`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "pokemon_introduced_type_cross_ref",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`type_id` INTEGER NOT NULL, `pokemon_id` INTEGER NOT NULL, PRIMARY KEY(`type_id`, `pokemon_id`))",
+        "fields": [
+          {
+            "fieldPath": "typeId",
+            "columnName": "type_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pokemonId",
+            "columnName": "pokemon_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "type_id",
+            "pokemon_id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_pokemon_introduced_type_cross_ref_pokemon_id",
+            "unique": false,
+            "columnNames": [
+              "pokemon_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_pokemon_introduced_type_cross_ref_pokemon_id` ON `${TABLE_NAME}` (`pokemon_id`)"
+          }
+        ],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '77b4e10c7c7df00986b2ac04d6978ec2')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '18a48c66213d7e83cc27add1a18e3594')"
     ]
   }
 }

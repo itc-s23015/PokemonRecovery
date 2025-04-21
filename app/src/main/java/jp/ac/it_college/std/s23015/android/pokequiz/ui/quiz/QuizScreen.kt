@@ -131,6 +131,7 @@ fun QuizView(
                 url = uiState.imageUrl,
                 name = uiState.targetName,
                 quizStatus = uiState.status,
+                hint = uiState.quizType
             )
 
             Spacer(modifier = Modifier.size(8.dp))

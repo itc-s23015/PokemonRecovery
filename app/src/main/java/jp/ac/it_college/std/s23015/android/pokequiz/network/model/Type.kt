@@ -6,7 +6,6 @@ import kotlinx.serialization.Serializable
 data class Type(
     val id: Int,
     val name: String,
-    val mainType: NamedApiResource,
     val names: List<Name>,
-    val pokemonSpecies: List<NamedApiResource>
+    val pokemon : List<TypePokemon>
 )

@@ -8,6 +8,7 @@ import jp.ac.it_college.std.s23015.android.pokequiz.network.model.NamedApiResour
 import jp.ac.it_college.std.s23015.android.pokequiz.network.model.PokemonSpecies
 import jp.ac.it_college.std.s23015.android.pokequiz.network.model.Region
 import jp.ac.it_college.std.s23015.android.pokequiz.network.model.Type
+import jp.ac.it_college.std.s23015.android.pokequiz.network.model.TypePokemon
 
 /**
  * [PokeApiService] のモックオブジェクト
@@ -26,9 +27,8 @@ object PokeApiServiceMock : PokeApiService {
     override suspend fun getTypeById(id: Int): Type = Type(
         id = 1,
         name = "ダミー(タイプ)",
-        mainType = NamedApiResource(name = "ダミータイプ", url = "http://example.com/"),
         names = emptyList(),
-        pokemonSpecies = emptyList()
+        pokemon = listOf(TypePokemon(slot = 1, pokemon = NamedApiResource (name = "ダミータイプ", url = "http://example.com/")))
     )
 
 

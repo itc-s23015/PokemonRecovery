@@ -36,6 +36,7 @@ fun PokemonArtwork(
     modifier: Modifier = Modifier,
     url: String,
     name: String,
+    hint: String,
     quizStatus: QuizStatus
 ) {
     // 背景色と画像と名前を重ねて表示するために使用
@@ -63,6 +64,22 @@ fun PokemonArtwork(
             ) else null,
         )
 
+        if (quizStatus == QuizStatus.PROGRESS) {
+            Box(
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .background(Color(0xAA000000)) // 半透明黒背景
+                    .padding(horizontal = 12.dp, vertical = 4.dp)
+            ) {
+                Text(
+                    text = hint,
+                    color = Color.White,
+                    style = MaterialTheme.typography.bodyLarge,
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+
         if (quizStatus != QuizStatus.PROGRESS) {
             // クイズが回答後なら、正解不正解に限らずポケモンの名前を表示
             // TODO: テキストが見づらいので表現方法を要検討
@@ -82,14 +99,14 @@ private fun PokemonArtworkPreview() {
         PokemonArtwork(
             url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/217.png",
             name = "ピカチュウ",
-            quizStatus = QuizStatus.PROGRESS
+            quizStatus = QuizStatus.PROGRESS,
+            hint = "でんき",
         )
         PokemonArtwork(
             url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/217.png",
             name = "ピカチュウ",
-            quizStatus = QuizStatus.WRONG
+            quizStatus = QuizStatus.WRONG,
+            hint = "でんき"
         )
-
     }
-
 }
