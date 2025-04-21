@@ -1,5 +1,6 @@
 package jp.ac.it_college.std.s23015.android.pokequiz.data.repository.impl
 
+/*
 import jp.ac.it_college.std.s23015.android.pokequiz.data.dao.TypeDao
 import jp.ac.it_college.std.s23015.android.pokequiz.data.entity.TypeEntity
 import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.TypeRepository
@@ -13,3 +14,5 @@ class TypeRepositoryImpl @Inject constructor(
 
     override suspend fun upsertType(type: TypeEntity) = dao.upsert(type)
 }
+
+ */

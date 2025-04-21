@@ -3,8 +3,8 @@ package jp.ac.it_college.std.s23015.android.pokequiz.network
 import jp.ac.it_college.std.s23015.android.pokequiz.network.model.Generation
 import jp.ac.it_college.std.s23015.android.pokequiz.network.model.Named
 import jp.ac.it_college.std.s23015.android.pokequiz.network.model.PokemonSpecies
+import jp.ac.it_college.std.s23015.android.pokequiz.network.model.PokemonTypes
 import jp.ac.it_college.std.s23015.android.pokequiz.network.model.Region
-import jp.ac.it_college.std.s23015.android.pokequiz.network.model.Type
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonNamingStrategy
@@ -71,9 +71,6 @@ interface PokeApiService {
     @GET("pokemon-species/{name}")
     suspend fun getPokemonSpeciesByName(@Path("name") name: String): PokemonSpecies
 
-    @GET("type/{id}")
-    suspend fun getTypeById(@Path("id") id: Int): Type
-
-    @GET("type/{name}")
-    suspend fun getTypeByName(@Path("name") name: String): Type
+    @GET("pokemon/{name}")
+    suspend fun getPokemonByName(@Path("name") name: String): PokemonTypes
 }

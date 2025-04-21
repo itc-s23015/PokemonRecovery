@@ -35,10 +35,11 @@ data class Named(
     val results: List<NamedApiResource> = emptyList()
 )
 
+
 @Serializable
-data class TypePokemon(
+data class PokemonTypeSlot(
     val slot: Int,
-    val pokemon: NamedApiResource
+    val type: NamedApiResource
 )
 
 

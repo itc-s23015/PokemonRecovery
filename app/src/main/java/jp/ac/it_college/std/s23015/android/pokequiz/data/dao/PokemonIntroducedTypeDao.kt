@@ -1,5 +1,6 @@
 package jp.ac.it_college.std.s23015.android.pokequiz.data.dao
 
+/*
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
@@ -17,3 +18,5 @@ interface PokemonIntroducedTypeDao {
     @Query("SELECT * FROM type WHERE id = :id")
     fun getTypeWithPokemon(id: Int): Flow<TypeWithPokemon>
 }
+
+ */

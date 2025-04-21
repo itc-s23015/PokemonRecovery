@@ -1,5 +1,5 @@
 package jp.ac.it_college.std.s23015.android.pokequiz.data.dao
-
+/*
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
@@ -14,3 +14,5 @@ interface TypeDao {
     @Query("SELECT * FROM type WHERE id = :id")
     fun getType(id: Int): Flow<TypeEntity>
 }
+
+ */

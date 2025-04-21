@@ -9,17 +9,17 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import jp.ac.it_college.std.s23015.android.pokequiz.data.PokeQuizDatabase
-import jp.ac.it_college.std.s23015.android.pokequiz.data.dao.PokemonIntroducedTypeDao
+//import jp.ac.it_college.std.s23015.android.pokequiz.data.dao.PokemonIntroducedTypeDao
 import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.GenerationsRepository
 import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.PokemonIntroducedGenerationRepository
-import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.PokemonIntroducedTypeRepository
+//import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.PokemonIntroducedTypeRepository
 import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.PokemonRepository
-import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.TypeRepository
+//import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.TypeRepository
 import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.impl.GenerationsRepositoryImpl
 import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.impl.PokemonIntroducedGenerationRepositoryImpl
-import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.impl.PokemonIntroducedTypeRepositoryImpl
+//import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.impl.PokemonIntroducedTypeRepositoryImpl
 import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.impl.PokemonRepositoryImpl
-import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.impl.TypeRepositoryImpl
+//import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.impl.TypeRepositoryImpl
 import javax.inject.Singleton
 
 /**
@@ -45,19 +45,19 @@ object DatabaseModule {
     @Provides
     fun providePokemonDao(db: PokeQuizDatabase) = db.pokemonDao
 
-    @Singleton
-    @Provides
-    fun provideType(db: PokeQuizDatabase) = db.typeDao
+//    @Singleton
+//    @Provides
+//    fun provideType(db: PokeQuizDatabase) = db.typeDao
 
     @Singleton
     @Provides
     fun providePokemonIntroducedGenerationDao(db: PokeQuizDatabase) =
         db.pokemonIntroducedGenerationDao
 
-    @Singleton
-    @Provides
-    fun providePokemonIntroducedTypeDao(db: PokeQuizDatabase) =
-        db.pokemonIntroducedTypeDao
+//    @Singleton
+//    @Provides
+//    fun providePokemonIntroducedTypeDao(db: PokeQuizDatabase) =
+//        db.pokemonIntroducedTypeDao
 }
 
 /**
@@ -69,8 +69,8 @@ abstract class RepositoryModule {
     @Binds
     abstract fun bindGenerationsRepository(impl: GenerationsRepositoryImpl): GenerationsRepository
 
-    @Binds
-    abstract fun bindTypeRepository(impl: TypeRepositoryImpl): TypeRepository
+//    @Binds
+//    abstract fun bindTypeRepository(impl: TypeRepositoryImpl): TypeRepository
 
     @Binds
     abstract fun bindPokemonRepository(impl: PokemonRepositoryImpl): PokemonRepository
@@ -78,6 +78,6 @@ abstract class RepositoryModule {
     @Binds
     abstract fun bindPokemonIntroducedGenerationRepository(impl: PokemonIntroducedGenerationRepositoryImpl): PokemonIntroducedGenerationRepository
 
-    @Binds
-    abstract fun bindPokemonIntroducedTypeRepository(impl: PokemonIntroducedTypeRepositoryImpl): PokemonIntroducedTypeRepository
+//    @Binds
+//    abstract fun bindPokemonIntroducedTypeRepository(impl: PokemonIntroducedTypeRepositoryImpl): PokemonIntroducedTypeRepository
 }

@@ -1,5 +1,6 @@
 package jp.ac.it_college.std.s23015.android.pokequiz.mock
 
+/*
 import jp.ac.it_college.std.s23015.android.pokequiz.data.entity.TypeEntity
 import jp.ac.it_college.std.s23015.android.pokequiz.data.repository.TypeRepository
 import kotlinx.coroutines.flow.Flow
@@ -12,3 +13,5 @@ object TypeRepositoryMock : TypeRepository {
 
     override suspend fun upsertType(type: TypeEntity) {}
 }
+
+ */

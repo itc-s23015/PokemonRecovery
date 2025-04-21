@@ -1,5 +1,6 @@
 package jp.ac.it_college.std.s23015.android.pokequiz.data.entity
 
+/*
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -28,3 +29,5 @@ data class TypeWithPokemon(
     )
     val pokemon: List<PokemonEntity>
 )
+
+ */

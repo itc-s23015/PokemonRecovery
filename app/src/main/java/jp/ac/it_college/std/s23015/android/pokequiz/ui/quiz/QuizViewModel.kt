@@ -1,5 +1,6 @@
 package jp.ac.it_college.std.s23015.android.pokequiz.ui.quiz
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -204,14 +205,24 @@ class QuizViewModel @Inject constructor(
         val choices = (pokeList.filter { it.id != target.id }.shuffled().subList(0, 3)
             .map { it.name } + target.name).shuffled()
         // UIステートを更新
-        _uiState.update {
-            it.copy(
-                status = QuizStatus.PROGRESS,
-                targetName = target.name,
-                imageUrl = url,
-                choices = choices,
-                quizNumber = uiState.value.quizNumber + 1
-            )
+        viewModelScope.launch {
+            val typeText = try {
+                val typeResult = service.getPokemonByName(target.name.lowercase())
+                typeResult.types.joinToString(" / ") { it.type.name }
+            } catch (e: Exception) {
+                "タイプ情報が取得できませんでした"
+            }
+
+            _uiState.update {
+                it.copy(
+                    status = QuizStatus.PROGRESS,
+                    targetName = target.name,
+                    imageUrl = url,
+                    choices = choices,
+                    quizNumber = uiState.value.quizNumber + 1,
+                    quizType = typeText
+                )
+            }
         }
         // 正常に次の問題に行けたので true を返す
         return true

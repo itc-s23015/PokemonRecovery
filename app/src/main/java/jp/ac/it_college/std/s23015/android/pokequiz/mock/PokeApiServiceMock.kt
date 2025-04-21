@@ -6,9 +6,9 @@ import jp.ac.it_college.std.s23015.android.pokequiz.network.model.Generation
 import jp.ac.it_college.std.s23015.android.pokequiz.network.model.Named
 import jp.ac.it_college.std.s23015.android.pokequiz.network.model.NamedApiResource
 import jp.ac.it_college.std.s23015.android.pokequiz.network.model.PokemonSpecies
+import jp.ac.it_college.std.s23015.android.pokequiz.network.model.PokemonTypeSlot
+import jp.ac.it_college.std.s23015.android.pokequiz.network.model.PokemonTypes
 import jp.ac.it_college.std.s23015.android.pokequiz.network.model.Region
-import jp.ac.it_college.std.s23015.android.pokequiz.network.model.Type
-import jp.ac.it_college.std.s23015.android.pokequiz.network.model.TypePokemon
 
 /**
  * [PokeApiService] のモックオブジェクト
@@ -24,11 +24,9 @@ object PokeApiServiceMock : PokeApiService {
         pokemonSpecies = emptyList()
     )
 
-    override suspend fun getTypeById(id: Int): Type = Type(
-        id = 1,
-        name = "ダミー(タイプ)",
-        names = emptyList(),
-        pokemon = listOf(TypePokemon(slot = 1, pokemon = NamedApiResource (name = "ダミータイプ", url = "http://example.com/")))
+    override suspend fun getPokemonByName(name: String): PokemonTypes = PokemonTypes(
+        name = "ダミータイプ",
+        types = listOf(PokemonTypeSlot(slot = 1, NamedApiResource (name = "ダミータイプ", url = "http://example.com/")))
     )
 
 
@@ -36,7 +34,7 @@ object PokeApiServiceMock : PokeApiService {
 
     override suspend fun getRegionByName(name: String): Region = Region(id = 1, names = emptyList())
 
-    override suspend fun getTypeByName(name: String): Type = getTypeById(1)
+//    override suspend fun getTypeByName(name: String): Type = getTypeById(1)
 
     override suspend fun getPokemonSpeciesByName(name: String): PokemonSpecies = PokemonSpecies(2)
 }

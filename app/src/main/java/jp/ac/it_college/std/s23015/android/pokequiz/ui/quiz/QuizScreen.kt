@@ -133,14 +133,7 @@ fun QuizView(
                 quizStatus = uiState.status,
                 hint = uiState.quizType
             )
-
-            Spacer(modifier = Modifier.size(8.dp))
-
-            Text(
-                text = stringResource(R.string.quiz_hint, uiState.quizType)
-            )
         }
-
 
         // 選択肢を表示
         ChoiceSection(
