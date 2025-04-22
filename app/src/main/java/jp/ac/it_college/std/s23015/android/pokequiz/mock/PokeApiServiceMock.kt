@@ -24,9 +24,9 @@ object PokeApiServiceMock : PokeApiService {
         pokemonSpecies = emptyList()
     )
 
-    override suspend fun getPokemonByName(name: String): PokemonTypes = PokemonTypes(
-        name = "ダミータイプ",
-        types = listOf(PokemonTypeSlot(slot = 1, NamedApiResource (name = "ダミータイプ", url = "http://example.com/")))
+    override suspend fun getPokemonById(id: Int): PokemonTypes = PokemonTypes(
+        id = 1,
+        types = listOf(PokemonTypeSlot(slot = 1, NamedApiResource (name = "dummy", url = "http://example.com/")))
     )
 
 

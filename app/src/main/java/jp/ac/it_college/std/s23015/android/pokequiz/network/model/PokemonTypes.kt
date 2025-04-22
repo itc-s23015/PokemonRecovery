@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class PokemonTypes(
-    val name: String,
+    val id: Int,
     val types: List<PokemonTypeSlot>
 )

@@ -1,6 +1,5 @@
 package jp.ac.it_college.std.s23015.android.pokequiz.ui.quiz
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -207,9 +206,10 @@ class QuizViewModel @Inject constructor(
         // UIステートを更新
         viewModelScope.launch {
             val typeText = try {
-                val typeResult = service.getPokemonByName(target.name.lowercase())
+                val typeResult = service.getPokemonById(target.id)
                 typeResult.types.joinToString(" / ") { it.type.name }
             } catch (e: Exception) {
+                println(e)
                 "タイプ情報が取得できませんでした"
             }
 
